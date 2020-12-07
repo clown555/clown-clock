@@ -1,7 +1,7 @@
+// Kudos to following tutorial and to tzapu for its wifimanager
 //https://randomnerdtutorials.com/esp8266-nodemcu-date-time-ntp-client-server-arduino/
 
 #include <ESP8266WiFi.h>
-//#include <Arduino.h>
 
 // NTP
 #include <NTPClient.h>
@@ -178,6 +178,7 @@ void processCMD(char *cmd) {
   Serial.print("PROCESSING COMMAND:");
   Serial.print(cmd);
   Serial.print(" ");
+  //http://docs.roxen.com/(en)/pike/7.0/tutorial/strings/sscanf.xml
   r = sscanf(cmd, "T%02d%02d%02d", &xhour, &xminute, &xsecond);
   if (r == 3) {    
     char cas[22];
@@ -190,9 +191,7 @@ void processCMD(char *cmd) {
     return;
   }
   r = sscanf(cmd, "B%d", &xvalue);
-  Serial.print(r);
-  Serial.print(" ");
-  if (r == 3) {    
+  if (r == 1) {    
     if(xvalue>0 && xvalue<8){
       display.setBrightness(xvalue);  
       Serial.print("BRIGHTNESS SET TO:");
