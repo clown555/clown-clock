@@ -110,6 +110,7 @@ void getNTPTime(){
 bool isHourInvalid(){
   return ((currentHour<0) || (currentHour>24));
 }
+
 // --------------------------------------------------------------------- GET RTC 
 void getRTCTime(){
   bool rtcH12 = false;
@@ -202,12 +203,19 @@ void processCMD(char *cmd) {
     return;   
   }  
   if(strcmp(cmd, "HELP") == 0){
-    Serial.println("NAPOVEDA K PRIKAZUM");  
+    Serial.println("NAPOVEDA K PRIKAZUM - CZ");  
     Serial.println("---------------------------");  
     Serial.println("THHMMSS - nastavi cas [T152030]");
     Serial.println("BX - nastavi jas displaye 1-7 [B1]"); 
     Serial.println("RESET - resetuje hodiny");  
-    Serial.println("HELP - zobrazi tuto napovedu"); 
+    Serial.println("HELP - zobrazi tuto napovedu");
+     
+    Serial.println("HELP - EN");  
+    Serial.println("---------------------------");  
+    Serial.println("THHMMSS - sets time [T152030]");
+    Serial.println("BX - sets brightness 1-7 [B1]"); 
+    Serial.println("RESET - sleep for 5secs and reset ESP");  
+    Serial.println("HELP - show this help"); 
     return; 
   }
   if(strcmp(cmd, "RESET") == 0){
@@ -217,7 +225,6 @@ void processCMD(char *cmd) {
     return;
   }
 }
-
 
 // ---------------------------------------------------------------------  
 void loop() {
